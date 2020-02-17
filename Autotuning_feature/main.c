@@ -33,16 +33,16 @@
 #define PULL_UP_ENABLE                          0x08
 #define BUTTON_PIN                              PIN7_bm
 
-void CLK_Init(void);
-void Button_Init(void);
+void CLK_init(void);
+void PORT_init(void);
 
 uint8_t volatile button_event = NOT_PRESSED;
 
 int main(void)
 {
     cli();
-    CLK_Init();
-    Button_Init();
+    CLK_init();
+    PORT_init();
     sei();
 
     while (1) 
@@ -61,7 +61,7 @@ int main(void)
     }
 }
 
-void CLK_Init(void)
+void CLK_init(void)
 {
     /* Set OSCHF clock to 1 MHz */
     _PROTECTED_WRITE (CLKCTRL.OSCHFCTRLA, CLKCTRL_FREQSEL_1M_gc);
@@ -71,7 +71,7 @@ void CLK_Init(void)
     _PROTECTED_WRITE (CLKCTRL.MCLKCTRLA, (CLKCTRL_CLKSEL_OSCHF_gc) | (CLKCTRL_CLKOUT_bm)); 
 }
 
-void Button_Init(void)
+void PORT_init(void)
 {
     /* Set PC7 direction as input */
     PORTC.DIRCLR = BUTTON_PIN;
