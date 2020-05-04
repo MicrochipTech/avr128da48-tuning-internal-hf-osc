@@ -1,1 +1,3 @@
-.vs
+*/.vs
+*/Autotuning_feature/Debug/
+*/Autotuning_feature/Release/
